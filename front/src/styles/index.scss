@@ -1,0 +1,54 @@
+@import "~antd/dist/antd.css";
+@import "~reset-css";
+
+@import "layouts/chat";
+
+body {
+    background: #f4f7fd;
+}
+
+body,
+html,
+#root,
+.wrapper {
+    height: 100%;
+    color: #202020;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+        "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 14px;
+}
+
+* {
+    outline: none;
+}
+
+.ant-btn-circle {
+    opacity: 0.5;
+    border: 0;
+    box-shadow: none;
+    transition: opacity 0.2s ease-in-out;
+    margin-top: 2px;
+    cursor: pointer;
+    &:focus {
+        color: #202020;
+    }
+    &:hover {
+        opacity: 1;
+        color: #202020;
+    }
+    &::after {
+        display: none;
+    }
+}
+
+.ant-form-item-with-help {
+    margin-bottom: 24px;
+}
+
+.emoji-mart-search {
+    margin-top: 6px;
+    padding: 0;
+    position: relative;
+    width: 95%;
+}

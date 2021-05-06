@@ -1,0 +1,12 @@
+.messages {
+    height: 100%;
+    padding-bottom: 0;
+    overflow: auto;
+    padding: 20px;
+    
+    &--loading {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
