@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Empty } from "antd";
 
 import { messagesActions } from "../redux/actions";
 import { socket } from "../core/";
@@ -57,6 +58,10 @@ const Messages = ({
     React.useEffect(() => {
         messagesRef.current.scrollTo(0, messagesRef.current.scrollHeight);
     }, [items, isTyping]);
+
+    if (!currentDialogId) {
+        return <Empty description="Откройте диалог" />;
+    }
 
     return (
         <BaseMessages

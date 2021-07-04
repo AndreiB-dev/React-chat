@@ -14,7 +14,7 @@ const actions = {
             payload: id,
         });
     },
-    
+
     fetchDialogs: () => (dispatch) => {
         dialogsApi
             .getAll()

@@ -22,7 +22,7 @@ const actions = {
         ({ text, dialogId, attachments }) =>
         (dispatch) => {
             return messagesApi.send(text, dialogId, attachments);
-    },
+        },
 
     setIsLoading: (bool) => ({
         type: "MESSAGES:SET_IS_LOADING",
@@ -40,7 +40,7 @@ const actions = {
                 dispatch(actions.setIsLoading(false));
             });
     },
-    
+
     deleteMessageById: (id) => (dispatch) => {
         messagesApi
             .delete(id)

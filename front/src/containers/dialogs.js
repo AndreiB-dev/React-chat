@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 import { socket } from "../core/";
 import { dialogsActions } from "../redux/actions";
+
 import { Dialogs as BaseDialogs } from "../components";
 
 const Dialogs = ({

@@ -1,6 +1,7 @@
 {
   "name": "chat",
-  "author": "Bychkov Andrei",
+  "author": "Bychkov Andrei <a.bychkov.dev@gmail.com> (https://github.com/AndreiB-dev/)",
+  "license": "MIT",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

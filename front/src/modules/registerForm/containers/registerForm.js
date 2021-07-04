@@ -49,9 +49,16 @@ export default withFormik({
         return errors;
     },
 
-    handleSubmit: (values, { setSubmitting }) => {
-        store.dispatch(usersActions.fetchUserRegistration(values));
-        setSubmitting(false);
+    handleSubmit: (values, { setSubmitting, props }) => {
+        store
+        .dispatch(usersActions.fetchUserRegistration(values))
+        .then((data) => {
+            if (!data.error) {
+                props.history.push("/");
+            }
+            setSubmitting(false);
+        })
+        .catch((err) => setSubmitting(false))
     },
 
     displayName: "RegisterForm",

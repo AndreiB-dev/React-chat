@@ -6,7 +6,7 @@ import { usersApi, dialogsApi, filesApi } from "../helpers/api";
 import { usersActions } from "../redux/actions";
 import { Sidebar as BaseSidebar } from "../components";
 
-const Sidebar = ({ user, setIsAuth, setUser }) => {
+const Sidebar = ({ user, setUser }) => {
     const [isModalVisible, setIsModalVisible] = React.useState(false);
     const [inputValue, setInputValue] = React.useState([]);
     const [isModal2Visible, setIsModal2Visible] = React.useState(false);

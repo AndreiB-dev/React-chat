@@ -70,7 +70,7 @@ const actions = {
     },
 
     fetchUserRegistration: (postData) => (dispatch) => {
-        usersApi
+        return usersApi
             .signup(postData)
             .then(({ data }) => {
                 if (data.error) {
@@ -104,7 +104,7 @@ const actions = {
                 openNotificationWithIcon("error");
             });
     },
-    
+
     verifyHash: (hash) => (dispatch) => {
         usersApi
             .verify(hash)
