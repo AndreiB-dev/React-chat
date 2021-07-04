@@ -1,4 +1,3 @@
-import RegisterForm from './containers/registerForm';
-
+import RegisterForm from "./containers/registerForm";
 
 export default RegisterForm;

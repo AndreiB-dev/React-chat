@@ -5,6 +5,7 @@ const actions = {
         type: "MESSAGES:SET_ITEMS",
         payload: items,
     }),
+
     addMessage: (message) => (dispatch, getState) => {
         const { dialogs } = getState();
         const { currentDialogId } = dialogs;
@@ -16,13 +17,18 @@ const actions = {
             });
         }
     },
-    fetchSendMessage: ({ text, dialogId, attachments }) => (dispatch) => {
-        return messagesApi.send(text, dialogId, attachments);
+
+    fetchSendMessage:
+        ({ text, dialogId, attachments }) =>
+        (dispatch) => {
+            return messagesApi.send(text, dialogId, attachments);
     },
+
     setIsLoading: (bool) => ({
         type: "MESSAGES:SET_IS_LOADING",
         payload: bool,
     }),
+
     fetchMessages: (dialogId) => (dispatch) => {
         dispatch(actions.setIsLoading(true));
         messagesApi
@@ -34,6 +40,7 @@ const actions = {
                 dispatch(actions.setIsLoading(false));
             });
     },
+    
     deleteMessageById: (id) => (dispatch) => {
         messagesApi
             .delete(id)

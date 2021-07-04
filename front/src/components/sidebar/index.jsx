@@ -1,15 +1,18 @@
 import React from "react";
 import {
     TeamOutlined,
-    FormOutlined,
     SettingOutlined,
     LoadingOutlined,
     PlusOutlined,
+    MessageOutlined,
 } from "@ant-design/icons";
+import Icon from "@ant-design/icons";
 import { Button, Modal, Select, Input, Upload, message } from "antd";
 
 import { Dialogs } from "../../containers";
 import { DefaultAvatar } from "..";
+
+import { ReactComponent as LogoutSvg } from "../../assets/img/logout.svg";
 
 const { Option } = Select;
 
@@ -50,6 +53,7 @@ const Sidebar = ({
     username,
     setUsername,
     avatarUrl,
+    logout,
 }) => {
     const options = usersList.map((user) => (
         <Option key={user.user_id}>{user.name}</Option>
@@ -66,11 +70,24 @@ const Sidebar = ({
                     }}
                 />
                 <p>{user.name}</p>
-                <Button
-                    onClick={showModal2}
-                    shape="circle"
-                    icon={<SettingOutlined />}
-                />
+                <div>
+                    <Button
+                        onClick={showModal2}
+                        shape="circle"
+                        icon={<SettingOutlined style={{ fontSize: "20px" }} />}
+                    />
+                    <Button
+                        className="chat__sidebar-exit-btn"
+                        onClick={logout}
+                        shape="circle"
+                        icon={
+                            <Icon
+                                component={LogoutSvg}
+                                style={{ fontSize: "24px" }}
+                            />
+                        }
+                    />
+                </div>
             </div>
             <div className="chat__sidebar-dialogs">
                 <div className="chat__sidebar-newdialog">
@@ -81,7 +98,7 @@ const Sidebar = ({
                     <Button
                         onClick={showModal}
                         shape="circle"
-                        icon={<FormOutlined />}
+                        icon={<MessageOutlined style={{ fontSize: "24px" }} />}
                     />
                 </div>
                 <Dialogs />

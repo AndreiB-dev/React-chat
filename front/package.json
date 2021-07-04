@@ -1,5 +1,6 @@
 {
-  "name": "front",
+  "name": "chat",
+  "author": "Bychkov Andrei",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

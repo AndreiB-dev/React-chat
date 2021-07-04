@@ -18,7 +18,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 5px;
+            padding: 10px;
             height: 20px;
             margin-bottom: 20px;
 
@@ -33,6 +33,10 @@
                     margin-right: 5px;
                 }
             }
+        }
+
+        &-exit-btn {
+            top: 1px;
         }
 
         &-header {
@@ -89,5 +93,12 @@
                 font-weight: bold;
             }
         }
+    }
+
+    &__loading {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
     }
 }

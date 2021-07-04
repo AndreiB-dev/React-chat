@@ -1,7 +1,7 @@
 import axios from "axios";
 
-axios.defaults.baseURL = window.location.origin;
 axios.defaults.headers.common["token"] = window.localStorage.token;
+axios.defaults.baseURL = window.location.origin;
 
 window.axios = axios;
 

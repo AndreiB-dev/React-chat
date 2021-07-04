@@ -1,4 +1,5 @@
 import { usersApi } from "../../helpers/api";
+import { axios } from "../../core";
 import { notification } from "antd";
 
 const actions = {
@@ -6,12 +7,14 @@ const actions = {
         type: "USERS:SET_DATA",
         payload: data,
     }),
+
     setIsAuth: (bool) => ({
         type: "USER:SET_IS_AUTH",
         payload: bool,
     }),
+
     fetchUserLogin: (postData) => (dispatch) => {
-        usersApi
+        return usersApi
             .signin(postData)
             .then(({ data }) => {
                 if (data.error) {
@@ -22,7 +25,10 @@ const actions = {
                         });
                     };
                     openNotificationWithIcon("error");
+                    delete window.localStorage.token;
                 } else {
+                    axios.defaults.headers.common["token"] = data.token;
+                    window.localStorage["token"] = data.token;
                     const openNotificationWithIcon = (type) => {
                         notification[type]({
                             message: "Успех!",
@@ -30,7 +36,6 @@ const actions = {
                         });
                     };
                     openNotificationWithIcon("success");
-                    window.localStorage["token"] = data.token;
                     dispatch(actions.setUser(data.userData));
                     dispatch(actions.setIsAuth(true));
                 }
@@ -45,9 +50,11 @@ const actions = {
                     });
                 };
                 openNotificationWithIcon("error");
+                delete window.localStorage.token;
                 dispatch(actions.setIsAuth(false));
             });
     },
+
     fetchUserData: () => (dispatch) => {
         usersApi
             .getMe()
@@ -55,13 +62,13 @@ const actions = {
                 dispatch(actions.setUser(data.userData));
             })
             .catch((err) => {
-                console.log("useract err", err);
                 if (err.response.status === 403) {
                     dispatch(actions.setIsAuth(false));
                     delete window.localStorage.token;
                 }
             });
     },
+
     fetchUserRegistration: (postData) => (dispatch) => {
         usersApi
             .signup(postData)
@@ -83,8 +90,8 @@ const actions = {
                     };
                     openNotificationWithIcon("success");
                     window.localStorage["token"] = data.token;
-                    dispatch(actions.setUser(data.userData[0]));
                     dispatch(actions.setIsAuth(true));
+                    dispatch(actions.setUser(data.userData[0]));
                 }
             })
             .catch((e) => {
@@ -97,6 +104,7 @@ const actions = {
                 openNotificationWithIcon("error");
             });
     },
+    
     verifyHash: (hash) => (dispatch) => {
         usersApi
             .verify(hash)

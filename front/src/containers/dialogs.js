@@ -35,7 +35,7 @@ const Dialogs = ({
     }, [items]);
 
     React.useEffect(() => {
-        fetchDialogs();
+            fetchDialogs();
 
         socket.on("SERVER:DIALOG_CREATED", fetchDialogs);
         socket.on("SERVER:NEW_MESSAGE", fetchDialogs);

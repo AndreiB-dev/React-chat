@@ -56,7 +56,7 @@ const Messages = ({
 
     React.useEffect(() => {
         messagesRef.current.scrollTo(0, messagesRef.current.scrollHeight);
-    }, [items]);
+    }, [items, isTyping]);
 
     return (
         <BaseMessages

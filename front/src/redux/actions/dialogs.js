@@ -6,6 +6,7 @@ const actions = {
         type: "DIALOGS:SET_ITEMS",
         payload: items,
     }),
+
     setCurrentDialogId: (id) => (dispatch) => {
         socket.emit("DIALOGS:JOIN", id);
         dispatch({
@@ -13,14 +14,18 @@ const actions = {
             payload: id,
         });
     },
+    
     fetchDialogs: () => (dispatch) => {
-        dialogsApi.getAll().then(({ data }) => {
-            if (!data.dialogData.error) {
-                dispatch(actions.setDialogs(data.dialogData));
-            } else {
-                dispatch(actions.setDialogs([]));
-            }
-        });
+        dialogsApi
+            .getAll()
+            .then(({ data }) => {
+                if (!data.dialogData.error) {
+                    dispatch(actions.setDialogs(data.dialogData));
+                } else {
+                    dispatch(actions.setDialogs([]));
+                }
+            })
+            .catch((err) => console.log("dilog error", err));
     },
 };
 

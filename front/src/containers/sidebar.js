@@ -3,9 +3,10 @@ import { connect } from "react-redux";
 import { notification } from "antd";
 
 import { usersApi, dialogsApi, filesApi } from "../helpers/api";
+import { usersActions } from "../redux/actions";
 import { Sidebar as BaseSidebar } from "../components";
 
-const Sidebar = ({ user }) => {
+const Sidebar = ({ user, setIsAuth, setUser }) => {
     const [isModalVisible, setIsModalVisible] = React.useState(false);
     const [inputValue, setInputValue] = React.useState([]);
     const [isModal2Visible, setIsModal2Visible] = React.useState(false);
@@ -43,6 +44,11 @@ const Sidebar = ({ user }) => {
                 })
                 .catch(() => setIsLoading(false));
         }
+    };
+
+    const logout = () => {
+        setUser(null);
+        delete window.localStorage.token;
     };
 
     const updateUserData = () => {
@@ -119,6 +125,7 @@ const Sidebar = ({ user }) => {
             handleChangeAvatar={handleChangeAvatar}
             avatarUrl={avatarUrl}
             updateUserData={updateUserData}
+            logout={logout}
         />
     );
 };
@@ -126,4 +133,4 @@ const Sidebar = ({ user }) => {
 export default connect(({ dialogs, users }) => ({
     dialogs,
     user: users.data,
-}))(Sidebar);
+}), usersActions)(Sidebar);

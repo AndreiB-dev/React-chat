@@ -13,14 +13,8 @@ import { Button, Block } from "../../../components";
 const success = true;
 
 const RegisterForm = (props) => {
-    const {
-        values,
-        touched,
-        errors,
-        handleSubmit,
-        handleChange,
-        handleBlur,
-    } = props;
+    const { values, touched, errors, handleSubmit, handleChange, handleBlur } =
+        props;
 
     return (
         <div>

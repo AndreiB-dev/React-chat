@@ -5,14 +5,8 @@ import { Button, Block } from "../../../components/";
 import { Link } from "react-router-dom";
 
 const LoginForm = (props) => {
-    const {
-        values,
-        touched,
-        errors,
-        handleSubmit,
-        handleChange,
-        handleBlur,
-    } = props;
+    const { values, touched, errors, handleSubmit, handleChange, handleBlur } =
+        props;
 
     return (
         <div>
@@ -85,6 +79,7 @@ const LoginForm = (props) => {
                     <Form.Item>
                         <Button
                             type="primary"
+                            htmlType="submit"
                             size="large"
                             className="login-form-button"
                             onClick={handleSubmit}>
@@ -92,7 +87,7 @@ const LoginForm = (props) => {
                         </Button>
                     </Form.Item>
                     <Form.Item className="auth__register-link">
-                        Нет аккаунта?{" "}
+                        Нет аккаунта?
                         <Link to="/signup">Зарегистрироваться!</Link>
                     </Form.Item>
                 </Form>

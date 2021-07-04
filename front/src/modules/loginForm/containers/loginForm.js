@@ -1,9 +1,9 @@
 import { withFormik } from "formik";
 
 import LoginForm from "../components/loginForm";
-import store from "../../../redux/store";
-
 import { usersActions } from "../../../redux/actions";
+
+import store from "../../../redux/store";
 
 const LoginFormContainer = withFormik({
     enableReinitialize: true,
@@ -28,9 +28,18 @@ const LoginFormContainer = withFormik({
         return errors;
     },
 
-    handleSubmit: async (values, { setSubmitting, props }) => {
-        await store.dispatch(usersActions.fetchUserLogin(values));
-        await props.history.push("/");
+    handleSubmit: (values, { setSubmitting, props }) => {
+        store
+            .dispatch(usersActions.fetchUserLogin(values))
+            .then((data) => {
+                if (!data.error) {
+                    props.history.push("/");
+                }
+                setSubmitting(false);
+            })
+            .catch(() => {
+                setSubmitting(false);
+            });
     },
 
     displayName: "LoginForm",

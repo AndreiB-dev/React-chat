@@ -2,15 +2,18 @@ import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import { Popover, Button } from "antd";
-import { EllipsisOutlined, EyeOutlined } from "@ant-design/icons";
+import {
+    EllipsisOutlined,
+    EyeOutlined,
+    PauseCircleOutlined,
+    PlayCircleOutlined,
+} from "@ant-design/icons";
 import { Emoji } from "emoji-mart";
 import reactStringReplace from "react-string-replace";
 
 import { convertTime, isAudio } from "../../helpers";
 
 import waveSvg from "../../assets/img/wave.svg";
-import playSvg from "../../assets/img/play.svg";
-import pauseSvg from "../../assets/img/pause.svg";
 
 import { Time, ReadedIcon, DefaultAvatar } from "..";
 
@@ -68,26 +71,30 @@ const MessageAudio = ({ audioSrc }) => {
     }, []);
 
     return (
-        <div className="message__audio">
+        <div className="message__bubble-audio">
             <audio ref={audioElem} src={audioSrc} preload="auto" />
             <div
-                className="message__audio-progress"
+                className="message__bubble-audio-progress"
                 style={{ width: progress + "%" }}
             />
-            <div className="message__audio-info">
-                <div className="message__audio-btn">
+            <div className="message__bubble-audio-info">
+                <div className="message__bubble-audio-btn">
                     <button onClick={togglePlay}>
                         {isPlaying ? (
-                            <img src={pauseSvg} alt="pauseSvg" />
+                            <PauseCircleOutlined
+                                style={{ color: "white", fontSize: "28px" }}
+                            />
                         ) : (
-                            <img src={playSvg} alt="playSvg" />
+                            <PlayCircleOutlined
+                                style={{ color: "white", fontSize: "28px" }}
+                            />
                         )}
                     </button>
                 </div>
-                <div className="message__audio-wave">
+                <div className="message__bubble-audio-wave">
                     <img src={waveSvg} alt="waveSvg" />
                 </div>
-                <span className="message__audio-duration">
+                <span className="message__bubble-audio-duration">
                     {convertTime(currentTime)}
                 </span>
             </div>
