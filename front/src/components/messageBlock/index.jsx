@@ -36,7 +36,7 @@ const MessageBlock = ({
                 {isLoading ? (
                     <Spin size="large" tip="Загрузка сообщений..." />
                 ) : items && items !== "error" && !isLoading ? (
-                    items.length > 0 ? (
+                    currentDialogId !== 0 && items.length > 0 ? (
                         items.map((item) => (
                             <Message
                                 key={item.message_id}
@@ -49,10 +49,10 @@ const MessageBlock = ({
                                 )}
                             />
                         ))
-                    ) : currentDialogId ? (
-                        <Empty description="Нет сообщений" />
-                    ) : (
+                    ) : !currentDialogId  ? (
                         <Empty description="Начните диалог" />
+                    ) : (
+                        <Empty description="Нет сообщений" />
                     )
                 ) : (
                     <Empty description="Нет сообщений" />
